@@ -1,6 +1,6 @@
 import pokemonApi from '../api';
 import endpoints from '../constants/endpoint';
-import { PokemonListResponseResult } from '../types';
+import { Pokemon, PokemonListResponseResult } from '../types';
 
 type PokemonListResponse = {
   count: number;
@@ -14,6 +14,12 @@ async function getPokemonList() {
   return res.data.results;
 }
 
+async function getPokemonDetail(url: string) {
+  const res = await pokemonApi.get<Pokemon>(url);
+  return res.data;
+}
+
 export default {
-  getPokemonList
+  getPokemonList,
+  getPokemonDetail
 };
