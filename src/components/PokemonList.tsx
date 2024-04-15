@@ -12,7 +12,7 @@ export default function PokemonList({ data, isSearching = false }: Props) {
     <View style={{ ...styles.container, opacity: isSearching ? 0.3 : 1 }}>
       <FlatList<PokemonListResponseResult>
         data={data}
-        renderItem={({ item }) => <PokemonListItem item={item} />}
+        renderItem={({ item }) => <PokemonListItem item={item} isDisabled={isSearching} />}
         keyExtractor={(item) => item.name}
         ListEmptyComponent={<Empty />}
       />

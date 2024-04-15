@@ -7,6 +7,7 @@ import TypeTag from './TypeTag';
 
 type Props = {
   item: PokemonListResponseResult;
+  isDisabled?: boolean;
 };
 
 function LoadingItem() {
@@ -25,7 +26,7 @@ function ErrorItem() {
   );
 }
 
-export default function PokemonListItem({ item }: Props) {
+export default function PokemonListItem({ item, isDisabled = false }: Props) {
   const { name, url } = item;
   const navigation = useNavigation();
   const { data: pokemonDetail, isLoading, isError } = usePokemonDetail(url);
@@ -36,7 +37,7 @@ export default function PokemonListItem({ item }: Props) {
   return (
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    <TouchableOpacity onPress={() => navigation.navigate('PokemonDetails', { url })}>
+    <TouchableOpacity onPress={() => navigation.navigate('PokemonDetails', { url })} disabled={isDisabled}>
       <View style={styles.pokemonItem}>
         <View style={styles.pokemonImageContainer}>
           <View style={styles.pokemonImageBackground}>
