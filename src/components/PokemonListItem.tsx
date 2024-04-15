@@ -1,4 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
+import LottieView from 'lottie-react-native';
 import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import usePokemonDetail from '../hooks/usePokemonDetail';
@@ -13,16 +14,19 @@ type Props = {
 
 function LoadingItem() {
   return (
-    <View style={{ flexDirection: 'row', alignItems: 'center', margin: 10 }}>
-      <Text style={{ marginLeft: 10 }}>loading</Text>
-    </View>
-  );
-}
+    <View style={styles.pokemonItem}>
+      <View style={{ width: 55, height: 55, alignItems: 'center', flexDirection: 'row', flex: 1 }}>
+        <View style={styles.pokemonImageContainer}>
+          <LottieView
+            source={require('../assets/pokeball-spinning.json')}
+            autoPlay
+            loop
+            style={{ width: 45, height: 45 }}
+          />
+        </View>
 
-function ErrorItem() {
-  return (
-    <View style={{ flexDirection: 'row', alignItems: 'center', margin: 10 }}>
-      <Text style={{ marginLeft: 10 }}>error</Text>
+        <Text style={styles.pokemonName}>Loading Pokemon...</Text>
+      </View>
     </View>
   );
 }
@@ -33,7 +37,7 @@ export default function PokemonListItem({ item, isDisabled = false }: Props) {
   const { data: pokemonDetail, isLoading, isError } = usePokemonDetail(url);
 
   if (isLoading) return <LoadingItem />;
-  if (isError || !pokemonDetail) return <ErrorItem />;
+  if (isError || !pokemonDetail) return null;
 
   return (
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment

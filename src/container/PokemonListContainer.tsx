@@ -11,5 +11,5 @@ export default function PokemonListContainer() {
 
   if (isError || !data) return <Empty />;
 
-  return <PokemonList data={data} />;
+  return <PokemonList data={data} paginatedList />;
 }
