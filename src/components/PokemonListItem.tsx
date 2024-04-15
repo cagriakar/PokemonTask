@@ -112,7 +112,8 @@ const styles = StyleSheet.create({
   pokemonId: {
     justifyContent: 'center',
     alignItems: 'center',
-    fontSize: 15
+    fontSize: 15,
+    color: 'grey'
   },
   pokemonTypesContainer: {
     flexDirection: 'row',

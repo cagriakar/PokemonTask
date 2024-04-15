@@ -18,8 +18,7 @@ const typeColorSchema = {
   dragon: '#6F35FC',
   dark: '#705746',
   steel: '#B7B7CE',
-  fairy: '#D685AD',
-  undefined: '#fff'
+  fairy: '#D685AD'
 } as const;
 
 const typeColorTextSchema = {
@@ -40,8 +39,7 @@ const typeColorTextSchema = {
   dragon: '#fff',
   dark: '#fff',
   steel: '#34344c',
-  fairy: '#602040',
-  undefined: '#fff'
+  fairy: '#602040'
 } as const;
 
 type Props = {
@@ -52,8 +50,8 @@ export default function TypeTag({ type }: Props) {
   return (
     <Tag
       text={type}
-      styleContainer={{ backgroundColor: typeColorSchema[type as keyof typeof typeColorSchema] }}
-      styleText={{ color: typeColorTextSchema[type as keyof typeof typeColorTextSchema] }}
+      styleContainer={{ backgroundColor: typeColorSchema[type as keyof typeof typeColorSchema] ?? '#ccc' }}
+      styleText={{ color: typeColorTextSchema[type as keyof typeof typeColorTextSchema] ?? '#000' }}
     />
   );
 }
