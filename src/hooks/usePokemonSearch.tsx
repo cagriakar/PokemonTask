@@ -1,4 +1,5 @@
 import { useDeferredValue, useState } from 'react';
+import useDebounce from './useDebounce';
 import usePokemonList from './usePokemonList';
 
 export default function usePokemonSearch() {
@@ -6,14 +7,16 @@ export default function usePokemonSearch() {
 
   const [searchTerm, setSearchTerm] = useState('');
   const isSearchActive = useDeferredValue(!!searchTerm);
+  const filterTerm = useDebounce(searchTerm, 300);
+  const isPending = useDeferredValue(searchTerm !== filterTerm);
 
   const filteredPokemons = (data ?? []).filter((pokemon) =>
-    pokemon.name.toLowerCase().includes(searchTerm.toLowerCase())
+    pokemon.name.toLowerCase().includes(filterTerm.toLowerCase())
   );
 
   const handleSearch = (text: string) => {
     setSearchTerm(text);
   };
 
-  return { filteredPokemons, isSearchActive, searchTerm, handleSearch };
+  return { filteredPokemons, isSearchActive, isPending, searchTerm, handleSearch };
 }
