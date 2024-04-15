@@ -1,7 +1,11 @@
 import { Image, StyleSheet, Text, View } from 'react-native';
 import Empty from '../components/Empty';
 import LoadingPokeball from '../components/LoadingPokeball';
+import PokemonStats from '../components/PokemonStats';
+import Tag from '../components/Tag';
+import TypeTag from '../components/TypeTag';
 import usePokemonDetail from '../hooks/usePokemonDetail';
+import utils from '../utils';
 
 type Props = {
   route: {
@@ -31,20 +35,24 @@ export default function PokemonDetailsScreen({ route }: Props) {
         </View>
       </View>
       <View style={styles.detailSection}>
-        <Text style={styles.pokemonName}>Name: {pokemon.name}</Text>
-        <Text style={styles.pokemonDetail}>Height: {pokemon.height}</Text>
-        <Text style={styles.pokemonDetail}>Weight: {pokemon.weight}</Text>
-        <View style={{ marginVertical: 20 }}>
-          {pokemon.stats.map((stat) => (
-            <View
-              key={stat.stat.name}
-              style={{ flexDirection: 'row', justifyContent: 'space-between', marginVertical: 5 }}
-            >
-              <Text style={{ fontWeight: 'bold' }}>{stat.stat.name}:</Text>
-              <Text>{stat.base_stat}</Text>
-            </View>
-          ))}
+        <View style={styles.card}>
+          <Text style={styles.pokemonName}>Name: {utils.firstLetterUpperCase(pokemon.name)}</Text>
+          <Text style={styles.pokemonDetail}>Height: {utils.heightToMeter(pokemon.height)}</Text>
+          <Text style={styles.pokemonDetail}>Weight: {utils.weightToKg(pokemon.weight)}</Text>
+          <View style={styles.pokemonOtherInfoContainer}>
+            <Text style={{ fontSize: 16 }}>Type: </Text>
+            {pokemon.types.map(({ type }) => (
+              <TypeTag key={type.name} type={type.name} />
+            ))}
+          </View>
+          <View style={styles.pokemonOtherInfoContainer}>
+            <Text style={{ fontSize: 16 }}>Abilities: </Text>
+            {pokemon.abilities.map(({ ability }) => (
+              <Tag key={ability.name} text={ability.name} />
+            ))}
+          </View>
         </View>
+        <PokemonStats stats={pokemon.stats} />
       </View>
     </View>
   );
@@ -56,22 +64,27 @@ const styles = StyleSheet.create({
     backgroundColor: '#f2f2f2'
   },
   imageSection: {
-    backgroundColor: '#fff'
+    alignItems: 'center',
+    paddingVertical: 20
   },
   pokemonImageContainer: {
-    width: 155,
-    height: 155,
-    borderRadius: 90,
-    backgroundColor: '#f2f2f2',
+    width: 150,
+    height: 150,
+    borderRadius: 75,
+    backgroundColor: '#ccc',
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'center',
-    marginVertical: 10
+    elevation: 2,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 2
   },
   pokemonImageBackground: {
-    width: 150,
-    height: 150,
-    borderRadius: 80,
+    width: 140,
+    height: 140,
+    borderRadius: 70,
     backgroundColor: '#ccc',
     justifyContent: 'center',
     alignItems: 'center',
@@ -79,20 +92,35 @@ const styles = StyleSheet.create({
     borderColor: '#fff'
   },
   pokemonImage: {
-    width: 150,
-    height: 150,
-    marginVertical: 10
+    width: 120,
+    height: 120
   },
   detailSection: {
     flex: 1,
     padding: 10
   },
+  card: {
+    backgroundColor: '#fff',
+    borderRadius: 8,
+    padding: 16,
+    elevation: 2,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 2
+  },
   pokemonName: {
-    fontSize: 16,
-    fontWeight: 'bold'
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 10
   },
   pokemonDetail: {
-    fontSize: 14,
-    marginBottom: 5
+    fontSize: 16,
+    marginBottom: 10
+  },
+  pokemonOtherInfoContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 10
   }
 });

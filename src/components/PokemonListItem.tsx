@@ -3,6 +3,7 @@ import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import usePokemonDetail from '../hooks/usePokemonDetail';
 import { PokemonListResponseResult } from '../types';
+import utils from '../utils';
 import TypeTag from './TypeTag';
 
 type Props = {
@@ -46,10 +47,8 @@ export default function PokemonListItem({ item, isDisabled = false }: Props) {
         </View>
         <View>
           <View style={styles.pokemonNameSection}>
-            <Text style={styles.pokemonName}>{name.charAt(0).toUpperCase() + name.slice(1)}</Text>
-            <Text style={styles.pokemonId}>
-              {`  #${'0000'.substring(0, '0000'.length - pokemonDetail.id.toString().length) + pokemonDetail.id}`}
-            </Text>
+            <Text style={styles.pokemonName}>{utils.firstLetterUpperCase(name)}</Text>
+            <Text style={styles.pokemonId}>{utils.idWithHashTag(pokemonDetail.id.toString())}</Text>
           </View>
           <View style={styles.pokemonTypesContainer}>
             {pokemonDetail.types.map(({ type }) => (
@@ -76,7 +75,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
     shadowRadius: 2,
-    borderRadius: 5
+    borderRadius: 8
   },
   pokemonImageContainer: {
     width: 55,

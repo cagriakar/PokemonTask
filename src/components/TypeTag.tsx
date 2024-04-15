@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native';
+import Tag from './Tag';
 
 const typeColorSchema = {
   normal: '#A8A77A',
@@ -19,7 +19,7 @@ const typeColorSchema = {
   dark: '#705746',
   steel: '#B7B7CE',
   fairy: '#D685AD',
-  undefined: '#ccc'
+  undefined: '#fff'
 } as const;
 
 const typeColorTextSchema = {
@@ -50,23 +50,10 @@ type Props = {
 
 export default function TypeTag({ type }: Props) {
   return (
-    <View style={{ ...styles.pokemonType, backgroundColor: typeColorSchema[type as keyof typeof typeColorSchema] }}>
-      <Text style={{ ...styles.typeText, color: typeColorTextSchema[type as keyof typeof typeColorTextSchema] }}>
-        {type.toUpperCase()}
-      </Text>
-    </View>
+    <Tag
+      text={type}
+      styleContainer={{ backgroundColor: typeColorSchema[type as keyof typeof typeColorSchema] }}
+      styleText={{ color: typeColorTextSchema[type as keyof typeof typeColorTextSchema] }}
+    />
   );
 }
-
-const styles = StyleSheet.create({
-  pokemonType: {
-    marginRight: 5,
-    padding: 5,
-    borderRadius: 5,
-    backgroundColor: '#f2f2f2'
-  },
-  typeText: {
-    fontWeight: 'bold',
-    fontSize: 10
-  }
-});
