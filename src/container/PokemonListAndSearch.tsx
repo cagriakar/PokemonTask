@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Platform, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import PokemonList from '../components/PokemonList';
 import usePokemonSearch from '../hooks/usePokemonSearch';
 import PokemonListContainer from './PokemonListContainer';
@@ -41,8 +41,7 @@ const styles = StyleSheet.create({
   },
   searchInput: {
     backgroundColor: '#fff',
-    padding: 15,
-    marginBottom: 10,
+    padding: Platform.OS === 'android' ? 10 : 15,
     borderRadius: 5,
     borderWidth: 2,
     borderColor: '#3760AA'
@@ -50,7 +49,7 @@ const styles = StyleSheet.create({
   clearButton: {
     position: 'absolute',
     right: 10,
-    marginTop: 23
+    marginTop: Platform.OS === 'android' ? 25 : 23
   },
   clearIconText: {
     fontSize: 18,

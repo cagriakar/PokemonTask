@@ -22,8 +22,7 @@ function HeaderTitle() {
       style={{
         width: 250,
         height: 40,
-        resizeMode: 'contain',
-        marginBottom: 15
+        resizeMode: 'contain'
       }}
     />
   );
@@ -32,7 +31,7 @@ export default function App() {
   useEffect(() => {
     setTimeout(() => {
       SplashScreen.hide();
-    }, 1000);
+    }, 2000);
   }, []);
 
   return (
@@ -43,7 +42,8 @@ export default function App() {
             name={'Home'}
             component={HomeScreen}
             options={{
-              headerTitle: HeaderTitle
+              headerTitle: HeaderTitle,
+              headerTitleAlign: 'center'
             }}
           />
           <Stack.Screen
