@@ -6,8 +6,13 @@ import { Image } from 'react-native';
 import HomeScreen from './src/screens/HomeScreen';
 import PokemonDetailsScreen from './src/screens/PokemonDetailsScreen';
 
+type RootStackParamList = {
+  Home: undefined;
+  PokemonDetails: { url: string };
+};
+
 const queryClient = new QueryClient();
-const Stack = createStackNavigator();
+const Stack = createStackNavigator<RootStackParamList>();
 
 function HeaderTitle() {
   return (
@@ -38,6 +43,7 @@ export default function App() {
             name='PokemonDetails'
             component={PokemonDetailsScreen}
             options={{
+              headerBackTitleVisible: false,
               headerTitle: HeaderTitle
             }}
           />
@@ -46,3 +52,5 @@ export default function App() {
     </QueryClientProvider>
   );
 }
+
+export { type RootStackParamList };
