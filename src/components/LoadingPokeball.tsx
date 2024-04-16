@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 export default function LoadingPokeball() {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Loading Pokemon...</Text>
+      <Text style={styles.text}>Loading Pokemons...</Text>
       <LottieView source={require('../assets/pokeball-spinning.json')} autoPlay loop style={styles.animation} />
     </View>
   );

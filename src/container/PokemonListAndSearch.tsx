@@ -4,10 +4,10 @@ import usePokemonSearch from '../hooks/usePokemonSearch';
 import PokemonListContainer from './PokemonListContainer';
 
 export default function PokemonListAndSearch() {
-  const { filteredPokemons, isSearchActive, isPending, handleSearch, searchTerm } = usePokemonSearch();
+  const { filteredPokemons, isSearchModeActive, isPending, handleSearch, searchTerm } = usePokemonSearch();
 
   const clearSearchTerm = () => {
-    handleSearch(''); // Set search term to empty string to clear
+    handleSearch('');
   };
 
   return (
@@ -25,7 +25,7 @@ export default function PokemonListAndSearch() {
           </TouchableOpacity>
         )}
       </View>
-      {isSearchActive ? <PokemonList data={filteredPokemons} isSearching={isPending} /> : <PokemonListContainer />}
+      {isSearchModeActive ? <PokemonList data={filteredPokemons} isSearching={isPending} /> : <PokemonListContainer />}
     </View>
   );
 }

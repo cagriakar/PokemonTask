@@ -4,6 +4,8 @@ import { Pokemon } from '../types';
 type Props = {
   stats: Pokemon['stats'];
 };
+
+const MAX_POKEMON_STAT = 255;
 export default function PokemonStats({ stats }: Props) {
   return (
     <View style={styles.card}>
@@ -12,7 +14,7 @@ export default function PokemonStats({ stats }: Props) {
         <View key={stat.stat.name} style={styles.statItem}>
           <Text style={styles.statName}>{stat.stat.name.toUpperCase()}:</Text>
           <View style={styles.statBarContainer}>
-            <View style={[styles.statBarFill, { width: `${(stat.base_stat / 255) * 100}%` }]}></View>
+            <View style={[styles.statBarFill, { width: `${(stat.base_stat / MAX_POKEMON_STAT) * 100}%` }]}></View>
           </View>
           <Text style={styles.statValue}>{stat.base_stat}</Text>
         </View>
