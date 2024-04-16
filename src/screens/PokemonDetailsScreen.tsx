@@ -53,10 +53,14 @@ export default function PokemonDetailsScreen({ route }: Props) {
       </View>
       <Modal animationType='fade' transparent={true} visible={isZoomedImageVisible}>
         <View style={styles.zoomedImageContainer}>
-          <TouchableOpacity onPress={() => setIsZoomedImageVisible(false)} style={styles.closeButton}>
-            <Text style={styles.closeIconText}>&#10006;</Text>
-          </TouchableOpacity>
-          <Image source={{ uri: pokemon.sprites.front_default }} style={styles.zoomedImage} />
+          <View style={styles.pokemonZoomedImageContainer}>
+            <View style={styles.pokemonZoomedImageBackground}>
+              <TouchableOpacity onPress={() => setIsZoomedImageVisible(false)} style={styles.closeButton}>
+                <Text style={styles.closeIconText}>&#10006;</Text>
+              </TouchableOpacity>
+              <Image source={{ uri: pokemon.sprites.front_default }} style={styles.zoomedImage} />
+            </View>
+          </View>
         </View>
       </Modal>
     </View>
@@ -66,7 +70,7 @@ export default function PokemonDetailsScreen({ route }: Props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f2f2f2'
+    backgroundColor: '#FFD235'
   },
   imageSection: {
     alignItems: 'center',
@@ -108,6 +112,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderRadius: 8,
     padding: 16,
+    borderWidth: 1,
+    borderColor: '#3760AA',
     elevation: 2,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
@@ -134,9 +140,33 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'rgba(0, 0, 0, 0.4)'
   },
+  pokemonZoomedImageContainer: {
+    width: 370,
+    height: 370,
+    borderRadius: 185,
+    backgroundColor: '#ccc',
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
+    elevation: 2,
+    shadowColor: '#000',
+    shadowOffset: { width: 5, height: 5 },
+    shadowOpacity: 0.2,
+    shadowRadius: 2
+  },
+  pokemonZoomedImageBackground: {
+    width: 360,
+    height: 360,
+    borderRadius: 180,
+    backgroundColor: '#ccc',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 8,
+    borderColor: '#fff'
+  },
   closeButton: {
     position: 'relative',
-    right: -100
+    right: -150
   },
   closeIconText: {
     fontSize: 24,

@@ -3152,6 +3152,7 @@ __metadata:
     react-native-gesture-handler: "npm:^2.16.0"
     react-native-safe-area-context: "npm:^4.9.0"
     react-native-screens: "npm:^3.30.1"
+    react-native-splash-screen: "npm:^3.3.0"
     react-test-renderer: "npm:18.2.0"
     typescript: "npm:5.0.4"
   languageName: unknown
@@ -8329,6 +8330,15 @@ __metadata:
     react: "*"
     react-native: "*"
   checksum: 10c0/3a9930524a44bfd5554908ff616ee757b638ea4a25b45d0a2abd5c800baee36c69d17fed67096066740945962996df9d3302db170fe273d6b13a46bd46e5da19
+  languageName: node
+  linkType: hard
+
+"react-native-splash-screen@npm:^3.3.0":
+  version: 3.3.0
+  resolution: "react-native-splash-screen@npm:3.3.0"
+  peerDependencies:
+    react-native: ">=0.57.0"
+  checksum: 10c0/0979585b4087dba0825c94393477fc0301210cfa09eae4a98336e91865765f3c774cf8b20c525b3cea74c588e1e4ff0aa9d7500292ad52979670aa59ab83f0a4
   languageName: node
   linkType: hard
 

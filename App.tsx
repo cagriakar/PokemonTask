@@ -1,8 +1,9 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Image } from 'react-native';
+import SplashScreen from 'react-native-splash-screen';
 import HomeScreen from './src/screens/HomeScreen';
 import PokemonDetailsScreen from './src/screens/PokemonDetailsScreen';
 
@@ -28,6 +29,12 @@ function HeaderTitle() {
   );
 }
 export default function App() {
+  useEffect(() => {
+    setTimeout(() => {
+      SplashScreen.hide();
+    }, 1000);
+  }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
       <NavigationContainer>

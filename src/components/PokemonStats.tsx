@@ -28,6 +28,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderRadius: 8,
     padding: 16,
+    borderWidth: 1,
+    borderColor: '#3760AA',
     elevation: 2,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },

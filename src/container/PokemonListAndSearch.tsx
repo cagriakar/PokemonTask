@@ -43,12 +43,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     padding: 15,
     marginBottom: 10,
-    borderRadius: 5
+    borderRadius: 5,
+    borderWidth: 2,
+    borderColor: '#3760AA'
   },
   clearButton: {
     position: 'absolute',
     right: 10,
-    marginTop: 21
+    marginTop: 23
   },
   clearIconText: {
     fontSize: 18,
