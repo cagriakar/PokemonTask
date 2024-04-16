@@ -51,7 +51,8 @@ export default function App() {
             component={PokemonDetailsScreen}
             options={{
               headerBackTitleVisible: false,
-              headerTitle: HeaderTitle
+              headerTitle: HeaderTitle,
+              headerTitleAlign: 'center'
             }}
           />
         </Stack.Navigator>
